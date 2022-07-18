@@ -1,0 +1,210 @@
+{
+  "uuid": "a6975f28-9cca-4b1d-8e5e-bab91ceb7f8f",
+  "lastMigration": 20,
+  "name": "book-exchange-mock",
+  "endpointPrefix": "api/v1",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "f7f57321-3dde-4cb9-9e86-95c5a2c25e46",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "",
+      "responses": [
+        {
+          "uuid": "9163f68c-5e3d-44f7-9a26-b67b9d6bebb7",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "73daca25-71f3-4e64-a5aa-11e98ac11749",
+      "documentation": "Return all users information",
+      "method": "get",
+      "endpoint": "users/",
+      "responses": [
+        {
+          "uuid": "c854c3a5-3908-444e-bcc1-402473d44f9e",
+          "body": "[\n  {{# repeat (queryParam 'limit' '10') }}\n    {\n      \"uid\": {{ faker 'datatype.number' min=10000 max=100000 }},\n      \"username\": \"{{ faker 'internet.userName' }}\",\n      \"description\": \"{{ faker 'lorem.paragraph' 10 }}\",\n      \"email\": \"{{ faker 'internet.email'  }}\",\n      \"city\": \"{{ faker 'address.city' }}\",\n      \"avatar\": \"{{ faker 'internet.avatar' }}\"\n    }\n  {{/repeat}}\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Creates 10 random users, or the amount specified in the 'total' query param",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "2fbdee41-744e-4a31-8996-95673f08e13c",
+      "documentation": "Return user information by uid",
+      "method": "get",
+      "endpoint": "users/:uid",
+      "responses": [
+        {
+          "uuid": "408b2163-b10c-4bb9-ab64-354208453396",
+          "body": "{\n  \"uid\": {{urlParam 'uid'}},\n  \"username\": \"{{ faker 'internet.userName' }}\",\n  \"description\": \"{{ faker 'lorem.paragraph' 10 }}\",\n  \"email\": \"{{ faker 'internet.email'  }}\",\n  \"city\": \"{{ faker 'address.city' }}\",\n  \"avatar\": \"{{ faker 'internet.avatar' }}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "7b379502-b6a8-4d18-9d46-79c428558cac",
+      "documentation": "Return all the books information",
+      "method": "get",
+      "endpoint": "books",
+      "responses": [
+        {
+          "uuid": "878d333c-ab26-4946-ba54-412951eb7052",
+          "body": "[\n  {{# repeat (queryParam 'limit' '10') }}\n    {\n      \"id\": {{ faker 'datatype.number' min=0 max=1000 }},\n      \"title\": \"{{ faker 'word.noun' 20 }}\",\n      \"cover\": \"{{ faker 'image.image' 1280 1910 }}\",\n      \"description\": \"{{ faker 'lorem.paragraph' 10 }}\",\n      \"published\": \"{{ faker 'date.past' }}\",\n      \"publisher\": \"{{ faker 'company.companyName' }}\",\n      \"tags\": {{{ someOf (array \"novel\" \"essays\" \"poetry\" \"short-stories\" \"fairy-tale\" \"comics\" \"reasoning\" \"picture-book\" \"science-fiction\" \"youth-romance\" \"fantasy\" \"martial-arts\" \"history\" \"philosophy\" \"biography\" \"design\" \"film\" \"architecture\" \"memoir\" \"music\") 1 5 true }}},\n      \"author\": \"{{ faker 'name.firstName' }}\",\n      \"rates\": {{ faker 'datatype.number' 100 }}\n    }\n  {{/repeat}}\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "a4fedd72-de39-4dbd-8fa5-79889d4b695a",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "books/:id",
+      "responses": [
+        {
+          "uuid": "a4628cdf-5a78-4d97-88a5-ff32a73e9394",
+          "body": "{\n  \"id\": {{urlParam 'id'}},\n  \"title\": \"{{ faker 'word.noun' 20 }}\",\n  \"cover\": \"{{ faker 'image.image' 1280 1910 }}\",\n  \"description\": \"{{ faker 'lorem.paragraph' 10 }}\",\n  \"published\": \"{{ faker 'date.past' }}\",\n  \"publisher\": \"{{ faker 'company.companyName' }}\",\n  \"tags\": {{{ someOf (array \"novel\" \"essays\" \"poetry\" \"short-stories\" \"fairy-tale\" \"comics\" \"reasoning\" \"picture-book\" \"science-fiction\" \"youth-romance\" \"fantasy\" \"martial-arts\" \"history\" \"philosophy\" \"biography\" \"design\" \"film\" \"architecture\" \"memoir\" \"music\") 1 5 true }}},\n  \"author\": \"{{ faker 'name.firstName' }}\",\n  \"rates\": {{ faker 'datatype.number' 100 }}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "8b7f8a2a-c9ad-4331-83ee-db6f891fe19e",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "books/:id/tags",
+      "responses": [
+        {
+          "uuid": "e311fab3-67d8-4724-8125-cb098a7572e2",
+          "body": "{{{ someOf (array \"novel\" \"essays\" \"poetry\" \"short-stories\" \"fairy-tale\" \"comics\" \"reasoning\" \"picture-book\" \"science-fiction\" \"youth-romance\" \"fantasy\" \"martial-arts\" \"history\" \"philosophy\" \"biography\" \"design\" \"film\" \"architecture\" \"memoir\" \"music\") 1 5 true }}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT.PATCH,DELETE, HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}
