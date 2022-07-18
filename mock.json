@@ -15,7 +15,7 @@
       "responses": [
         {
           "uuid": "9163f68c-5e3d-44f7-9a26-b67b9d6bebb7",
-          "body": "{}",
+          "body": "{\n  \"apis\": {\n    \"version\": 1,\n    \"users\": \"/api/v1/users\",\n    \"books\": \"/api/v1/books\",\n    \"tags\": \"/api/v1/tags\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -113,7 +113,7 @@
     },
     {
       "uuid": "a4fedd72-de39-4dbd-8fa5-79889d4b695a",
-      "documentation": "",
+      "documentation": "Return book information by id",
       "method": "get",
       "endpoint": "books/:id",
       "responses": [
@@ -139,7 +139,7 @@
     },
     {
       "uuid": "8b7f8a2a-c9ad-4331-83ee-db6f891fe19e",
-      "documentation": "",
+      "documentation": "Return book's tags information by id",
       "method": "get",
       "endpoint": "books/:id/tags",
       "responses": [
@@ -162,10 +162,62 @@
       "enabled": true,
       "randomResponse": false,
       "sequentialResponse": false
+    },
+    {
+      "uuid": "be3ced3d-0165-448c-9931-77bb857112fd",
+      "documentation": "Return all the available tags",
+      "method": "get",
+      "endpoint": "tags",
+      "responses": [
+        {
+          "uuid": "b3c15819-06bc-40cb-a77f-f190cf8a959a",
+          "body": "{\n  \"literature\": [ \"novel\", \"essays\", \"poetry\", \"short-stories\", \"fairy-tale\" ],\n  \"pop\": [\"comics\", \"reasoning\", \"picture-book\", \"science-fiction\", \"youth-romance\", \"fantasy\", \"martial-arts\" ],\n  \"civilization\": [ \"history\", \"philosophy\", \"biography\", \"design\", \"film\", \"architecture\", \"memoir\", \"music\" ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "6370239d-29de-4292-9918-cbd93e6f0b0d",
+      "documentation": "Return different tags according to type",
+      "method": "get",
+      "endpoint": "tags/:type",
+      "responses": [
+        {
+          "uuid": "8b5e4093-a509-40d1-a406-f84410fe2831",
+          "body": "{{#switch (urlParam 'type')}}\n  {{#case 'literature'}}[ \"novel\", \"essays\", \"poetry\", \"short-stories\", \"fairy-tale\" ]{{/case}}\n  {{#case 'pop'}}[\"comics\", \"reasoning\", \"picture-book\", \"science-fiction\", \"youth-romance\", \"fantasy\", \"martial-arts\" ]{{/case}}\n  {{#case 'civilization'}}[ \"history\", \"philosophy\", \"biography\", \"design\", \"film\", \"architecture\", \"memoir\", \"music\" ]{{/case}}\n  {{#default}}[]{{/default}}\n{{/switch}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
     }
   ],
   "proxyMode": false,
-  "proxyHost": "",
+  "proxyHost": "https://book-exchange-mock.azurewebsites.net",
   "proxyRemovePrefix": false,
   "tlsOptions": {
     "enabled": false,
