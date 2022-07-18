@@ -2,7 +2,7 @@ version: '3.9'
 services:
   mock:
     image: mockoon/cli
-    command: -d https://mogeko.me/book-exchange-mock/mock.json
+    command: -d https://raw.githubusercontent.com/mogeko/book-exchange-mock/master/mock.json
     ports:
       - "3001:3001"
     stdin_open: true
