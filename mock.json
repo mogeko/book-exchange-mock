@@ -41,7 +41,7 @@
       "responses": [
         {
           "uuid": "c854c3a5-3908-444e-bcc1-402473d44f9e",
-          "body": "[\n  {{# repeat (queryParam 'limit' '10') }}\n    {\n      \"uid\": {{ faker 'datatype.number' min=10000 max=100000 }},\n      \"username\": \"{{ faker 'internet.userName' }}\",\n      \"description\": \"{{ faker 'lorem.paragraph' 10 }}\",\n      \"email\": \"{{ faker 'internet.email'  }}\",\n      \"city\": \"{{ faker 'address.city' }}\",\n      \"avatar\": \"{{ faker 'internet.avatar' }}\"\n    }\n  {{/repeat}}\n]",
+          "body": "[\n  {{# repeat (queryParam 'limit' '10') }}\n    {\n      \"uid\": \"{{ faker 'datatype.number' min=10000 max=100000 }}\",\n      \"username\": \"{{ faker 'internet.userName' }}\",\n      \"description\": \"{{ faker 'lorem.paragraph' 10 }}\",\n      \"email\": \"{{ faker 'internet.email'  }}\",\n      \"avatar\": \"{{ faker 'internet.avatar' }}\"\n    }\n  {{/repeat}}\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "Creates 10 random users, or the amount specified in the 'total' query param",
@@ -67,7 +67,7 @@
       "responses": [
         {
           "uuid": "408b2163-b10c-4bb9-ab64-354208453396",
-          "body": "{\n  \"uid\": {{urlParam 'uid'}},\n  \"username\": \"{{ faker 'internet.userName' }}\",\n  \"description\": \"{{ faker 'lorem.paragraph' 10 }}\",\n  \"email\": \"{{ faker 'internet.email'  }}\",\n  \"city\": \"{{ faker 'address.city' }}\",\n  \"avatar\": \"{{ faker 'internet.avatar' }}\"\n}",
+          "body": "{\n  \"uid\": \"{{urlParam 'uid'}}\",\n  \"username\": \"{{ faker 'internet.userName' }}\",\n  \"description\": \"{{ faker 'lorem.paragraph' 10 }}\",\n  \"email\": \"{{ faker 'internet.email'  }}\",\n  \"avatar\": \"{{ faker 'internet.avatar' }}\",\n  \"city\": \"{{ faker 'address.city' }}\",\n  \"fullname\": \"{{ firstName }} {{ lastName }}\",\n  \"birthdate\": \"{{ faker 'date.past' 100 }}\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -93,7 +93,7 @@
       "responses": [
         {
           "uuid": "878d333c-ab26-4946-ba54-412951eb7052",
-          "body": "[\n  {{# repeat (queryParam 'limit' '10') }}\n    {\n      \"id\": {{ faker 'datatype.number' min=0 max=1000 }},\n      \"title\": \"{{ faker 'word.noun' 20 }}\",\n      \"cover\": \"{{ faker 'image.image' 1280 1910 }}\",\n      \"description\": \"{{ faker 'lorem.paragraph' 10 }}\",\n      \"published\": \"{{ faker 'date.past' }}\",\n      \"publisher\": \"{{ faker 'company.companyName' }}\",\n      \"tags\": {{{ someOf (array \"novel\" \"essays\" \"poetry\" \"short-stories\" \"fairy-tale\" \"comics\" \"reasoning\" \"picture-book\" \"science-fiction\" \"youth-romance\" \"fantasy\" \"martial-arts\" \"history\" \"philosophy\" \"biography\" \"design\" \"film\" \"architecture\" \"memoir\" \"music\") 1 5 true }}},\n      \"author\": \"{{ faker 'name.firstName' }}\",\n      \"rates\": {{ faker 'datatype.number' 100 }}\n    }\n  {{/repeat}}\n]",
+          "body": "[\n  {{# repeat (queryParam 'limit' '10') }}\n    {\n      \"id\": \"bk{{ faker 'datatype.number' min=0 max=1000 }}\",\n      \"title\": \"{{ faker 'word.noun' 20 }}\",\n      \"cover\": \"{{ faker 'image.image' 1280 1910 }}\",\n      \"short_desc\": \"{{ faker 'lorem.paragraph' 10 }}\",\n      \"tags\": {{{ someOf (array \"novel\" \"essays\" \"poetry\" \"short-stories\" \"fairy-tale\" \"comics\" \"reasoning\" \"picture-book\" \"science-fiction\" \"youth-romance\" \"fantasy\" \"martial-arts\" \"history\" \"philosophy\" \"biography\" \"design\" \"film\" \"architecture\" \"memoir\" \"music\") 1 5 true }}},\n      \"author\": \"{{ faker 'name.firstName' }}\",\n      \"rates\": {{ faker 'datatype.number' 100 }}\n    }\n  {{/repeat}}\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -119,7 +119,7 @@
       "responses": [
         {
           "uuid": "a4628cdf-5a78-4d97-88a5-ff32a73e9394",
-          "body": "{\n  \"id\": {{urlParam 'id'}},\n  \"title\": \"{{ faker 'word.noun' 20 }}\",\n  \"cover\": \"{{ faker 'image.image' 1280 1910 }}\",\n  \"description\": \"{{ faker 'lorem.paragraph' 10 }}\",\n  \"published\": \"{{ faker 'date.past' }}\",\n  \"publisher\": \"{{ faker 'company.companyName' }}\",\n  \"tags\": {{{ someOf (array \"novel\" \"essays\" \"poetry\" \"short-stories\" \"fairy-tale\" \"comics\" \"reasoning\" \"picture-book\" \"science-fiction\" \"youth-romance\" \"fantasy\" \"martial-arts\" \"history\" \"philosophy\" \"biography\" \"design\" \"film\" \"architecture\" \"memoir\" \"music\") 1 5 true }}},\n  \"author\": \"{{ faker 'name.firstName' }}\",\n  \"rates\": {{ faker 'datatype.number' 100 }}\n}",
+          "body": "{\n  \"id\": \"{{urlParam 'id'}}\",\n  \"title\": \"{{ faker 'word.noun' 20 }}\",\n  \"cover\": \"{{ faker 'image.image' 1280 1910 }}\",\n  \"short_desc\": \"{{ faker 'lorem.paragraph' 10 }}\",\n  \"tags\": {{{ someOf (array \"novel\" \"essays\" \"poetry\" \"short-stories\" \"fairy-tale\" \"comics\" \"reasoning\" \"picture-book\" \"science-fiction\" \"youth-romance\" \"fantasy\" \"martial-arts\" \"history\" \"philosophy\" \"biography\" \"design\" \"film\" \"architecture\" \"memoir\" \"music\") 1 5 true }}},\n  \"author\": \"{{ faker 'name.firstName' }}\",\n  \"rates\": {{ faker 'datatype.number' 100 }},\n  \"long_desc\": \"{{ faker 'lorem.paragraph' 50 }}\",\n  \"digest\": \"{{ faker 'lorem.paragraph' 50 }}\",\n  \"published\": \"{{ faker 'date.past' }}\",\n  \"publisher\": \"{{ faker 'company.companyName' }}\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -193,11 +193,11 @@
       "uuid": "6370239d-29de-4292-9918-cbd93e6f0b0d",
       "documentation": "Return different tags according to type",
       "method": "get",
-      "endpoint": "tags/:type",
+      "endpoint": "tags/:group",
       "responses": [
         {
           "uuid": "8b5e4093-a509-40d1-a406-f84410fe2831",
-          "body": "{{#switch (urlParam 'type')}}\n  {{#case 'literature'}}[ \"novel\", \"essays\", \"poetry\", \"short-stories\", \"fairy-tale\" ]{{/case}}\n  {{#case 'pop'}}[\"comics\", \"reasoning\", \"picture-book\", \"science-fiction\", \"youth-romance\", \"fantasy\", \"martial-arts\" ]{{/case}}\n  {{#case 'civilization'}}[ \"history\", \"philosophy\", \"biography\", \"design\", \"film\", \"architecture\", \"memoir\", \"music\" ]{{/case}}\n  {{#default}}[]{{/default}}\n{{/switch}}",
+          "body": "{{#switch (urlParam 'group')}}\n  {{#case 'literature'}}[ \"novel\", \"essays\", \"poetry\", \"short-stories\", \"fairy-tale\" ]{{/case}}\n  {{#case 'pop'}}[\"comics\", \"reasoning\", \"picture-book\", \"science-fiction\", \"youth-romance\", \"fantasy\", \"martial-arts\" ]{{/case}}\n  {{#case 'civilization'}}[ \"history\", \"philosophy\", \"biography\", \"design\", \"film\", \"architecture\", \"memoir\", \"music\" ]{{/case}}\n  {{#default}}[]{{/default}}\n{{/switch}}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
