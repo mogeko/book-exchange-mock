@@ -223,7 +223,7 @@
       "responses": [
         {
           "uuid": "356ba5f6-2d03-4d65-b8a7-d2c356cd81cd",
-          "body": "{\n  \"book_id\": \"bk{{ faker 'datatype.number' min=0 max=1000 }}\"\n  \"url\": \"/books/bk{{ faker 'datatype.number' min=0 max=1000 }}\"\n}",
+          "body": "{\n  \"book_id\": \"bk{{ faker 'datatype.number' min=0 max=1000 }}\",\n  \"url\": \"/books/bk{{ faker 'datatype.number' min=0 max=1000 }}\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
