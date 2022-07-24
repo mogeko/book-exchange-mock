@@ -145,7 +145,7 @@
       "responses": [
         {
           "uuid": "21cec392-e9eb-48ef-941f-1f35763192f5",
-          "body": "{\n  \"bk_id\": \"{{urlParam 'bkid'}}\",\n  \"text\": \"{{ faker 'lorem.paragraphs' 10 }}\"\n}",
+          "body": "{\n  \"bk_id\": \"{{urlParam 'bkid'}}\",\n  \"text\": \"{{ faker 'lorem.paragraph' 50 }}\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -171,7 +171,7 @@
       "responses": [
         {
           "uuid": "7c1e7f0a-16b5-43fc-8430-47d5eb57585c",
-          "body": "{\n  \"bk_id\": \"{{urlParam 'bkid'}}\",\n  \"text\": \"{{ faker 'lorem.paragraphs' 10 }}\"\n}",
+          "body": "{\n  \"bk_id\": \"{{urlParam 'bkid'}}\",\n  \"text\": \"{{ faker 'lorem.paragraph' 50 }}\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -275,7 +275,7 @@
       "responses": [
         {
           "uuid": "683dc194-77b4-4673-9e93-eae2b9813786",
-          "body": "{\n  \"id\": \"{{ urlParam 'cmtid' }}\",\n  \"msg\": \"{{ faker 'lorem.paragraphs' 6 }}\"\n}",
+          "body": "{\n  \"id\": \"{{ urlParam 'cmtid' }}\",\n  \"msg\": \"{{ faker 'lorem.paragraph' 50 }}\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
