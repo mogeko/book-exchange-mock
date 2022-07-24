@@ -15,7 +15,7 @@
       "responses": [
         {
           "uuid": "9163f68c-5e3d-44f7-9a26-b67b9d6bebb7",
-          "body": "{\n  \"apis\": {\n    \"version\": 1,\n    \"users\": \"/api/v1/users\",\n    \"books\": \"/api/v1/books\",\n    \"tags\": \"/api/v1/tags\"\n  }\n}",
+          "body": "{\n  \"apis\": {\n    \"version\": 1,\n    \"users\": \"{{hostname}}/api/v1/users\",\n    \"books\": \"{{hostname}}/api/v1/books\",\n    \"tags\": \"{{hostname}}/api/v1/tags\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -93,7 +93,7 @@
       "responses": [
         {
           "uuid": "878d333c-ab26-4946-ba54-412951eb7052",
-          "body": "[\n  {{# repeat (queryParam 'limit' '10') }}\n    {\n      \"id\": \"bk{{ faker 'datatype.number' min=0 max=1000 }}\",\n      \"title\": \"{{ faker 'word.noun' 20 }}\",\n      \"cover\": \"{{ faker 'image.image' 1280 1910 }}\",\n      \"tags\": {{{ someOf (array 'novel' 'essays' 'poetry' 'short-stories' 'fairy-tale' 'comics' 'reasoning' 'picture-book' 'science-fiction' 'youth-romance' 'fantasy' 'martial-arts' 'history' 'philosophy' 'biography' 'design' 'film' 'architecture' 'memoir' 'music') 1 5 true }}},\n      \"rates\": {{ faker 'datatype.number' 100 }},\n      \"mate\": {\n        \"author\": \"{{ faker 'name.firstName' }} {{ faker 'name.lastName' }}\"\n      },\n      \"desc\": {\n        \"short_desc\": \"{{ faker 'lorem.paragraph' 10 }}\"\n      }\n    }\n  {{/repeat}}\n]",
+          "body": "[\n  {{# repeat (queryParam 'limit' '10') }}\n    {\n      \"belong_to\": \"bk{{ faker 'datatype.number' min=0 max=1000 }}\",\n      \"title\": \"{{ faker 'word.noun' 20 }}\",\n      \"cover\": \"{{ faker 'image.image' 1280 1910 }}\",\n      \"tags\": {{{ someOf (array 'novel' 'essays' 'poetry' 'short-stories' 'fairy-tale' 'comics' 'reasoning' 'picture-book' 'science-fiction' 'youth-romance' 'fantasy' 'martial-arts' 'history' 'philosophy' 'biography' 'design' 'film' 'architecture' 'memoir' 'music') 1 5 true }}},\n      \"rates\": {{ faker 'datatype.number' 100 }},\n      \"mate\": {\n        \"author\": \"{{ faker 'name.firstName' }} {{ faker 'name.lastName' }}\"\n      },\n      \"desc\": {\n        \"short_desc\": \"{{ faker 'lorem.paragraph' 10 }}\"\n      }\n    }\n  {{/repeat}}\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -115,11 +115,11 @@
       "uuid": "a4fedd72-de39-4dbd-8fa5-79889d4b695a",
       "documentation": "Return book information by id",
       "method": "get",
-      "endpoint": "books/:id",
+      "endpoint": "books/:bkid",
       "responses": [
         {
           "uuid": "a4628cdf-5a78-4d97-88a5-ff32a73e9394",
-          "body": "{\n  \"id\": \"{{urlParam 'id'}}\",\n  \"title\": \"{{ faker 'word.noun' 20 }}\",\n  \"cover\": \"{{ faker 'image.image' 1280 1910 }}\",\n  \"tags\": {{{ someOf (array 'novel' 'essays' 'poetry' 'short-stories' 'fairy-tale' 'comics' 'reasoning' 'picture-book' 'science-fiction' 'youth-romance' 'fantasy' 'martial-arts' 'history' 'philosophy' 'biography' 'design' 'film' 'architecture' 'memoir' 'music') 1 5 true }}},\n  \"rates\": {{ faker 'datatype.number' 100 }},\n  \"mate\": {\n    \"author\": \"{{ faker 'name.firstName' }} {{ faker 'name.lastName' }}\",\n    \"publisher\": \"{{ faker 'company.companyName' }}\",\n    \"subtitle\": \"{{ faker 'lorem.sentence' 20 }}\",\n    \"language\": \"{{ oneOf (array 'Afrikaans' 'Arabic' 'Azerbaijani' 'Czech' 'German' 'Greek' 'English' 'Spanish' 'Farsi' 'Finnish' 'French' 'Georgian' 'Hebrew' 'Hrvatski' 'Hungarian' 'Armenian' 'Indonesia' 'Italian' 'Japanese' 'Korean' 'Latvian' 'Macedonian' 'Norwegian' 'Nepalese' 'Dutch' 'Polish' 'Romanian' 'Russian' 'Slovakian' 'Swedish' 'Turkish' 'Ukrainian' 'Urdu' 'Vietnamese' 'Chinese') }}\",\n    \"{{ oneOf (array 'paperback' 'hardcover') }}\": {{ faker 'datatype.number' min=100 max=10000 }},\n    \"publication_date\": \"{{ faker 'date.past' }}\",\n    \"isbn\": \"978-{{ faker 'datatype.number' min=1000000000 max=1999999999 }}\"\n  },\n  \"desc\": {\n    \"short_desc\": \"{{ faker 'lorem.paragraph' 10 }}\",\n    \"long_desc\": \"{{ faker 'lorem.paragraph' 50 }}\",\n    \"digest\": \"{{ faker 'lorem.paragraph' 50 }}\"\n  }\n}",
+          "body": "{\n  \"id\": \"{{urlParam 'bkid'}}\",\n  \"title\": \"{{ faker 'word.noun' 20 }}\",\n  \"cover\": \"{{ faker 'image.image' 1280 1910 }}\",\n  \"tags\": {{{ someOf (array 'novel' 'essays' 'poetry' 'short-stories' 'fairy-tale' 'comics' 'reasoning' 'picture-book' 'science-fiction' 'youth-romance' 'fantasy' 'martial-arts' 'history' 'philosophy' 'biography' 'design' 'film' 'architecture' 'memoir' 'music') 1 5 true }}},\n  \"rates\": {{ faker 'datatype.number' 100 }},\n  \"mate\": {\n    \"author\": \"{{ faker 'name.firstName' }} {{ faker 'name.lastName' }}\",\n    \"publisher\": \"{{ faker 'company.companyName' }}\",\n    \"subtitle\": \"{{ faker 'lorem.sentence' 20 }}\",\n    \"language\": \"{{ oneOf (array 'Afrikaans' 'Arabic' 'Azerbaijani' 'Czech' 'German' 'Greek' 'English' 'Spanish' 'Farsi' 'Finnish' 'French' 'Georgian' 'Hebrew' 'Hrvatski' 'Hungarian' 'Armenian' 'Indonesia' 'Italian' 'Japanese' 'Korean' 'Latvian' 'Macedonian' 'Norwegian' 'Nepalese' 'Dutch' 'Polish' 'Romanian' 'Russian' 'Slovakian' 'Swedish' 'Turkish' 'Ukrainian' 'Urdu' 'Vietnamese' 'Chinese') }}\",\n    \"{{ oneOf (array 'paperback' 'hardcover') }}\": {{ faker 'datatype.number' min=100 max=10000 }},\n    \"publication_date\": \"{{ faker 'date.past' }}\",\n    \"isbn\": \"978-{{ faker 'datatype.number' min=1000000000 max=1999999999 }}\"\n  },\n  \"desc\": {\n    \"short_desc\": \"{{ faker 'lorem.paragraph' 10 }}\",\n    \"to_be_continued\": {{boolean}}\n  },\n  \"digest\": {\n    \"short_digest\": \"{{ faker 'lorem.paragraph' 10 }}\",\n    to_be_continued\": {{boolean}}\n  }\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -138,14 +138,40 @@
       "sequentialResponse": false
     },
     {
-      "uuid": "8b7f8a2a-c9ad-4331-83ee-db6f891fe19e",
-      "documentation": "Return book's tags information by id",
+      "uuid": "48d17549-db11-4d4d-a85e-d4ca8eac8d9a",
+      "documentation": "Return an introduction to a specific book",
       "method": "get",
-      "endpoint": "books/:id/tags",
+      "endpoint": "books/:bkid/desc",
       "responses": [
         {
-          "uuid": "e311fab3-67d8-4724-8125-cb098a7572e2",
-          "body": "{{{ someOf (array 'novel' 'essays' 'poetry' 'short-stories' 'fairy-tale' 'comics' 'reasoning' 'picture-book' 'science-fiction' 'youth-romance' 'fantasy' 'martial-arts' 'history' 'philosophy' 'biography' 'design' 'film' 'architecture' 'memoir' 'music') 1 5 true }}}",
+          "uuid": "21cec392-e9eb-48ef-941f-1f35763192f5",
+          "body": "{\n  \"bk_id\": \"{{urlParam 'bkid'}}\",\n  \"desc\": \"{{ faker 'lorem.paragraphs' 10 }}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "dae6d1b1-a705-41d2-b0a8-28819ce2975d",
+      "documentation": "Return a digest strip to a specific book",
+      "method": "get",
+      "endpoint": "books/:bkid/digest",
+      "responses": [
+        {
+          "uuid": "7c1e7f0a-16b5-43fc-8430-47d5eb57585c",
+          "body": "{\n  \"bk_id\": \"{{urlParam 'bkid'}}\",\n  \"digest\": \"{{ faker 'lorem.paragraphs' 10 }}\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -216,6 +242,58 @@
       "sequentialResponse": false
     },
     {
+      "uuid": "e28c8a5e-6db1-4405-b5b6-fc9e1648292b",
+      "documentation": "Return to comment list",
+      "method": "get",
+      "endpoint": "comments",
+      "responses": [
+        {
+          "uuid": "33d93cf2-b8f6-404b-ac62-2c1af383106c",
+          "body": "[\n  {{# repeat (queryParam 'limit' '20') }}\n    {\n      \"id\": \"cmt{{ faker 'datatype.number' min=1000000000 max=100000000000 }}\",\n      \"author_meta\": {\n        {{# if (queryParamRaw 'uid') }}\n        \"uid\": \"{{queryParam 'uid' }}\",\n        {{else}}\n        \"uid\": \"{{ faker 'datatype.number' min=10000 max=100000 }}\"\n        {{/if}}\n        \"username\": \"{{ faker 'internet.userName' }}\",\n        \"email\": \"{{ faker 'internet.email'  }}\",\n        \"avatar\": \"{{ faker 'internet.avatar' }}\"\n      },\n      \"meta\": {\n        \"short_review\": \"{{ faker 'lorem.lines' 1 }}\",\n        \"rates\": {{ faker 'datatype.number' 100 }},\n        \"like\": {{ faker 'datatype.number' 1000 }},\n        \"dislike\": {{ faker 'datatype.number' 1000 }},\n        \"comment_date\": \"{{ faker 'date.past' 10 }}\",\n        \"location\": \"{{ faker 'address.county' }}\"\n      },\n      \"respond\": [\n        {{# repeat 0 20 }}\n        {\n          \"id\": \"cmt{{ faker 'datatype.number' min=1000000000 max=100000000000 }}\",\n          \"author_meta\": {\n            \"uid\": \"{{ faker 'datatype.number' min=10000 max=100000 }}\",\n            \"username\": \"{{ faker 'internet.userName' }}\",\n            \"email\": \"{{ faker 'internet.email'  }}\",\n            \"avatar\": \"{{ faker 'internet.avatar' }}\"\n          },\n          \"meta\": {\n            \"like\": {{ faker 'datatype.number' 1000 }},\n            \"dislike\": {{ faker 'datatype.number' 1000 }},\n            \"comment_date\": \"{{ faker 'date.past' 10 }}\",\n            \"location\": \"{{ faker 'address.county' }}\"\n          },\n          \"comment_date\": \"{{ faker 'date.past' 10 }}\",\n          \"belong_to\": \"cmt{{ faker 'datatype.number' min=1000000000 max=100000000000 }}\",\n          \"msg\": \"{{ faker 'lorem.lines' 1 }}\",\n          \"to_be_continued\": {{boolean}}\n        }\n        {{/repeat}}\n      ],\n      {{# if (queryParamRaw 'bkid') }}\n      \"belong_to\": \"{{queryParam 'bkid' }}\",\n      {{else}}\n      \"belong_to\": \"bk{{ faker 'datatype.number' min=0 max=1000 }}\",\n      {{/if}}\n      \"msg\": \"{{ faker 'lorem.paragraph' 6 }}\",\n      \"to_be_continued\": {{boolean}}\n    }\n  {{/repeat}}\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "409ffdba-b1b8-4b5f-bf53-4345b22241f8",
+      "documentation": "Return a complete comments",
+      "method": "get",
+      "endpoint": "comments/:cmtid",
+      "responses": [
+        {
+          "uuid": "683dc194-77b4-4673-9e93-eae2b9813786",
+          "body": "{\n  \"id\": \"{{ urlParam 'cmtid' }}\",\n  \"msg\": \"{{ faker 'lorem.paragraphs' 6 }}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
       "uuid": "8b8fe475-4fbf-49e5-8338-4ecfea1b4569",
       "documentation": "Return an ID of a random Book",
       "method": "get",
@@ -223,7 +301,7 @@
       "responses": [
         {
           "uuid": "356ba5f6-2d03-4d65-b8a7-d2c356cd81cd",
-          "body": "{\n  \"book_id\": \"bk{{ faker 'datatype.number' min=0 max=1000 }}\",\n  \"url\": \"/books/bk{{ faker 'datatype.number' min=0 max=1000 }}\"\n}",
+          "body": "{\n  \"bk_id\": \"bk{{ faker 'datatype.number' min=0 max=1000 }}\",\n  \"url\": \"/books/bk{{ faker 'datatype.number' min=0 max=1000 }}\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
