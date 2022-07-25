@@ -318,6 +318,32 @@
       "enabled": true,
       "randomResponse": false,
       "sequentialResponse": false
+    },
+    {
+      "uuid": "db64f367-60bd-44db-8641-d971335e193b",
+      "documentation": "Return the badge tips belonging to menus",
+      "method": "get",
+      "endpoint": "badges",
+      "responses": [
+        {
+          "uuid": "89fa81be-4de5-4c0e-97f7-0fe545b61d04",
+          "body": "{\n  \"menus\": [\n    {{ faker 'datatype.number' 100 }},\n    0,\n    {{ faker 'datatype.number' 100 }}\n  ],\n  \"user\": [\n    {{# repeat 2 }}\n    {{ faker 'datatype.number' 10 }}\n    {{/repeat}}\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
     }
   ],
   "proxyMode": false,
